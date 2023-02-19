@@ -1,0 +1,247 @@
+body{
+    background-color: #2D2A46;
+    color: whitesmoke;
+}
+
+.header {
+    background-color: #3D3B58;
+    text-align: left;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.25rem;
+    font-family: sans-serif;
+}
+
+/* Loader */
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading-spinner {
+    border: 0.5rem solid #f3f3f3;
+    border-top: 0.5rem solid #3498db;
+    border-radius: 50%;
+    width: 3.12rem;
+    height: 3.12rem;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+body.loading {
+    overflow: hidden;
+}
+
+body.loading .loading-overlay {
+    display: flex;
+}
+
+
+/* Navbar */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.62rem 1.25rem;
+}
+
+.file-btn,
+.run-btn,
+.language-selector,
+.setting-icon {
+    /* background-color: lightgray; */
+    padding: 0.62rem 1.25rem;
+    border: none;
+    border-radius: 0.31rem;
+    cursor: pointer;
+}
+
+.run-btn {
+    padding: 0.62rem 3rem;
+}
+
+.language-selector {
+    display: inline-block;
+    margin-right: 1.25rem;
+}
+
+.setting-icon {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.37rem 0.75rem rgba(0, 0, 0, 0.175);
+}
+
+.setting-icon:hover .dropdown-menu {
+    display: block;
+}
+
+
+/* Input */
+
+#input {
+    width: 99%;
+    height: 4rem;
+    resize: none;
+    overflow: scroll;
+    background-color: #272822;
+    color: whitesmoke;
+}
+
+#output {
+    height: 59vh;
+    overflow: scroll;
+    background-color: #272822;
+    border: 1px solid black;
+    color: whitesmoke;
+}
+
+.btn{
+    background-color: lightgray;
+    color: #272822;
+}
+
+
+/* .dropdown-menu button{
+    background-color: #2D2A46;
+    color: whitesmoke;
+} */
+
+.light{
+    background-color: #AAE3E2;
+}
+
+
+
+/* Modal */
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Header */
+.modal-header {
+    padding: 2px 16px;
+    background-color: #AAE3E2;
+    color: #272822;
+}
+
+.modal-header h2 {
+    margin: auto;
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 2px 16px;
+}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    color: #272822;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Table */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+{%load static%}
+
+<head>
+  <title>codeEditor</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+  <script src="https://kit.fontawesome.com/ef2b4442b9.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="{%static 'style.css'%}">
+
+</head>
+
+<body>
+  <div class="header">codeEditor</div>
+
+  <div id="loading1" class="">
+    <div id="loading2" class=""></div>
+  </div>
+
+  <nav>
+    <div class="nav-left">
+      <button class="file-btn btn" onclick="saveFile()">Save</button>
+    </div>
+    <div class="nav-middle">
+      <button class="run-btn btn" onclick="executeCode()">Run</button>
+    </div>
+    <div class="nav-right">
+      <div class="language-selector btn">
+        Select Language:
+        <select name="languages" id="languages" onchange="changeLanguage()">
+          <option value="c"> C </option>
+          <option value="cpp"> C++ </option>
+          <option value="py"> Python </option>
+          <option value="js"> JavaScript </option>
+          <option value="java"> JAVA </option>
+        </select>
+      </div>
+      <div class="setting-icon btn">
+        <a href="">
+          <i class="fa-solid fa-gear"></i>
+        </a>
+        <div class="dropdown-menu">
+          <button class="dropdown-item" id="theme" value="dark" onclick="themeChange()">Light Mode</button>
+          <button id="shortcuts" class="dropdown-item">Shortcuts</button>
+          <button id="feedback" class="dropdown-item">Feedback</button>
+          <button id="about" class="dropdown-item">About</button>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- The Modal -->
+  <div id="shortcuts-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Shortcuts</h2>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <table>
+          <tr>
+            <td>CTRL+ALT++</td>
+            <td>To zoom-in in the code editor</td>
+          </tr>
+          <tr>
+            <td>CTRL+ALT+-</td>
+            <td>To zoom-out in the code editor</td>
+          </tr>
+          <tr>
+            <td>CTRL+ALT+ENTER</td>
+            <td>To run the program</td>
+          </tr>
+          <tr>
+            <td>CTRL+ALT+s</td>
+            <td>To download the file</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="feedback-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Feedback</h2>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        NsFNSDVGNKLKFV
+      </div>
+    </div>
+  </div>
+  <div id="about-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>About</h2>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        NsFNSDVGNKLKFV
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-lg-7 col-md-7">
+      <div class="editor" id="editor" style="height:80vh; width: 100%; margin-left: 0.8rem;"></div>
+
+    </div>
+    <div class="col-lg-5 col-md-5">
+      <h5>Input:</h5>
+      <textarea name="" id="input" rows="1" placeholder="Use new line(press Enter) for multiple inputs"></textarea>
+      <!-- <input type="text" style="height:3rem; width: 99%;"> -->
+      <h5>Output:</h5>
+      <div id="output" class="output"></div>
+    </div>
+  </div>
+
+
+  <!-- <script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.0/ace.js"
+    integrity="sha512-vgArOyW+sdp69qm3025hO1uoxhMZ7rzc2NZbaC/0eUD92rYIx4YSI/NdQ1+oINXb8tXoFQJyQqpfV9KxoPGuCw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.0/theme-monokai.min.js"
+    integrity="sha512-vH1p51CJtqdqWMpL32h5B9600achcN1XeTfd31hEcrCcCb5PCljIu7NQppgdNtdsayRQTnKmyf94s6HYiGQ9BA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.4.12/src-noconflict/ext-language_tools.js"></script>
+
+
+  <script src="{%static 'ide.js'%}"></script>
+  </script>
+</body>
+
+</html>
