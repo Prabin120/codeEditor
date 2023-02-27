@@ -62,12 +62,12 @@
   <!-- The Modal -->
   <div id="shortcuts-modal" class="modal">
     <!-- Modal content -->
-    <div class="modal-content">
+    <div class="modal-content container">
       <div class="modal-header">
         <h2>Shortcuts</h2>
         <span class="close">&times;</span>
       </div>
-      <div class="modal-body">
+      <div class="modal-body container">
         <table>
           <tr>
             <td>CTRL+ALT++</td>
@@ -98,7 +98,28 @@
         <span class="close">&times;</span>
       </div>
       <div class="modal-body">
-        NsFNSDVGNKLKFV
+        <div class="container mb-5 mt-4">
+          <!-- <form action="" mathod="post"> -->
+            <div class="form-group container-sm">
+              <label for="exampleInputName">Name:</label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="Enter Your Name...">
+            </div>
+            <div class="form-group container-sm">
+              <label for="exampleInputEmail1">Email:</label>
+              <input type="email" class="form-control" name="email" id="email" placeholder="Enter Your Email...">
+            </div>
+            <div class="form-group container-sm">
+              <label for="exampleFormControlTextarea1">Message:</label>
+              <textarea class="form-control" id="message" name="message" placeholder="Please write your valuable feedback" rows="3"></textarea>
+            </div>
+            <div class="form-group container-sm mt-2">
+              <button class="btn btn-primary" type="submit" onclick="feedback()">Submit</button>
+            </div>
+            <div class="form-group container-sm mx-auto mt-2">
+              <h2 id="feedback-message" style="text-align: center;"></h2>
+            </div>
+          <!-- </form> -->
+        </div>
       </div>
     </div>
   </div>
@@ -109,8 +130,15 @@
         <h2>About</h2>
         <span class="close">&times;</span>
       </div>
-      <div class="modal-body">
-        NsFNSDVGNKLKFV
+      <div class="modal-body container-sm p-5">
+        <p>Welcome to our platform! We are passionate about coding and believe that anyone can learn to code with the right resources and support. Our mission is to provide a user-friendly and intuitive coding environment for beginners and experts alike.</p>
+        <p>We offer a variety of features that make coding accessible and fun. With our code editor, you can easily write and test your code, and see the results in real-time. Our interactive tutorials and exercises help you learn coding concepts step by step, and our community forum allows you to connect with other coders and get help when you need it.
+        </p>
+        <p>We are committed to providing high-quality content and resources, and are always looking for ways to improve our platform. Whether you're just starting out or looking to improve your skills, we are here to support you on your coding journey.</p>
+        <div style="position: absolute; bottom: 0; text-align: center;">
+          <p>Developed and Maintain by Prabin</p>
+          <p>Copywrite © 2023 codeEditor</p>
+        </div>
       </div>
     </div>
   </div>

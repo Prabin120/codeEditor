@@ -5,6 +5,11 @@ from random import randint
 import subprocess
 import os
 from django.http import FileResponse
+from django.core.mail import send_mail
+from .models import feedbackForm
+from django.conf import settings
+
+
 # Create your views here.
 def index(request):
     return render(request,'index.html')
@@ -129,30 +134,36 @@ def code(request):
         os.remove(file_path+file_name)
     return JsonResponse({"output":output,"error":error})
 
-# @csrf_exempt
-# def saveFile(request):
-#     print(request)
-#     print("Its calling the save function")
-#     language = request.POST['language']
-#     if language == "python":
-#         language = "py"
-#     elif language == "javascript":
-#         language = "js"
-#     code = str(request.POST['code'])
-#     file_name=""
-#     file_path = "home/programs/"
-#     if language == "java":
-#         num = randint(0,1000000000)
-#         file_name = "MainClass"+str(num)+"."+language
-#         code = code.replace("MainClass","MainClass"+str(num),1)
-#     else:
-#         file_name=language+str(randint(0,1000000000))+"."+language
-
-#     with open (file_path+file_name,"w") as file:
-#         file.write(code)
+def send_feedback_email(name, email, message):
+    subject = 'Feedback from {} for codeEditor'.format(name)
+    body = 'Name: {}\n\nEmail: {}\n\n{}'.format(name,email, message)
+    sender_email = settings.EMAIL_HOST_USER
+    recipient_list = ['prabinsharma120@gmail.com']
+    send_mail(subject, body, sender_email, recipient_list)
     
-#     file = open(file_path+file_name, 'rb')
-#     response = FileResponse(file)
-#     response['Content-Disposition'] = 'attachment; filename= file_name'
+def send_response(name, email):
+    body = "Thank you {} for your valuable response.\nWe are working continuosly working to give you a better user experience \n\n\n\n\n\n\n\n\tRegards,\nTeam, codeEditor\ncodeeditor12@gmail.com".format(name)
+    subject = "Feedback Response"
+    sender_email = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject, body, sender_email, recipient_list)
 
-#     return response
+
+@csrf_exempt
+def feedback(request):
+    if request.method =='POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        message = request.POST['message']
+        print(name)
+        print(email)
+        print(message)
+        try:
+            data=feedbackForm.objects.create(name=name,email=email,message=message)
+            data.save()
+            send_feedback_email(name=name, email=email, message=message)
+            send_response(name=name,email=email)
+            return JsonResponse({'sucess':"success"})
+        except Exception as e:
+            print(e)
+            return JsonResponse({'sucess':"failed"})

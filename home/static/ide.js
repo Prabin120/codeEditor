@@ -212,3 +212,22 @@ window.addEventListener("click", function(event) {
     closeModal(aboutModal);
   }
 });
+
+function feedback(){
+    $("#loading1").addClass("loading-overlay");
+    $("#loading2").addClass("loading-spinner");
+    $.ajax({
+        url: "feedback/",
+        method: "POST",
+        data: {
+            name:$("#name").val(),
+            email:$("#email").val(),
+            message:$("#message").val()
+        },
+        success: function (response) {
+            $("#loading1").removeClass("loading-overlay");
+            $("#loading2").removeClass("loading-spinner");
+            $("#feedback-message").html("Thank You for your feedback.")
+        }
+    })
+}
