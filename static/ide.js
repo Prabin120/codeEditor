@@ -1,4 +1,35 @@
 
+function executeCode() {
+    $("#loading1").addClass("loading-overlay");
+    $("#loading2").addClass("loading-spinner");
+    $.ajax({
+        url: "code/",
+        method: "POST",
+        data: {
+            language: $("#languages").val(),
+            code: editor.getSession().getValue(),
+            input: $("#input").val()
+        },
+        success: function (response) {
+            console.log(response);
+            var output = response["output"];
+            var error = response["error"];
+            $("#loading1").removeClass("loading-overlay");
+            $("#loading2").removeClass("loading-spinner");
+
+            if (error != "") {
+                error = error.replace(/\n/g, '<br>');
+                $(".output").html(error);
+            }
+            else {
+                output = output.replace(/\n/g, '<br>');
+                $(".output").html(output);
+            }
+        }
+    })
+}
+
+
 // code editor
 let editor;
 
@@ -42,35 +73,6 @@ function changeLanguage() {
     }
 }
 
-function executeCode() {
-    $("#loading1").addClass("loading-overlay");
-    $("#loading2").addClass("loading-spinner");
-    $.ajax({
-        url: "code/",
-        method: "POST",
-        data: {
-            language: $("#languages").val(),
-            code: editor.getSession().getValue(),
-            input: $("#input").val()
-        },
-        success: function (response) {
-            console.log(response);
-            var output = response["output"];
-            var error = response["error"];
-            $("#loading1").removeClass("loading-overlay");
-            $("#loading2").removeClass("loading-spinner");
-
-            if (error != "") {
-                error = error.replace(/\n/g, '<br>');
-                $(".output").html(error);
-            }
-            else {
-                output = output.replace(/\n/g, '<br>');
-                $(".output").html(output);
-            }
-        }
-    })
-}
 
 // Sortcuts for code editor
 document.addEventListener("keydown", function (event) {
