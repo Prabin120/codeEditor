@@ -69,7 +69,7 @@ def run_program(file_path,file_name, program_type, input_data=None):
             output = ""
         return output, error
     elif program_type == 'py':
-        process = subprocess.Popen(['python', file_path+file_name], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(['python3', file_path+file_name], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         output, error = process.communicate(input_data.encode() if input_data else None)
         return output.decode(), error.decode()
     elif program_type == 'js':
