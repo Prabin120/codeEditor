@@ -19,13 +19,20 @@ function executeCode() {
 
             if (error != "") {
                 error = error.replace(/\n/g, '<br>');
-                $(".output").html(error);
+                $(".output").html("Error:<br>"+error);
             }
             else {
                 output = output.replace(/\n/g, '<br>');
                 $(".output").html(output);
             }
+        },
+        error: function (error) {
+            $("#loading1").removeClass("loading-overlay");
+            $("#loading2").removeClass("loading-spinner");
+            alert("You got an Error "+error)
+            console.log(`Error ${error}`);
         }
+
     })
 }
 
