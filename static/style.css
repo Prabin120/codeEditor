@@ -113,7 +113,7 @@ nav {
 #input {
     width: 99%;
     height: 4rem;
-    resize: none;
+    /* resize: none; */
     overflow: scroll;
     background-color: #272822;
     color: whitesmoke;
