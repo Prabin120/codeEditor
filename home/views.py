@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from random import randint
 import subprocess
-import os
+import os,sys
 from django.core.mail import send_mail
 from .models import feedbackForm
 from django.conf import settings
@@ -14,6 +14,7 @@ def index(request):
     return render(request,'home/index.html')
 
 def run_program(file_path,file_name, program_type, input_data=None):
+    sys.stdout.flush()
     if program_type in ("c","cpp"):
         if program_type =="c":
             process = subprocess.Popen(['gcc', file_path + file_name], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -49,7 +50,6 @@ def run_program(file_path,file_name, program_type, input_data=None):
                 process = subprocess.Popen(['java', '-cp', str(class_path), class_file], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             output = process.stdout.read().decode('utf-8')
             error = process.stderr.read().decode('utf-8')
-            return output, error
         else:
             error = process.stderr.read().decode('utf-8')
             output = ""
@@ -125,7 +125,8 @@ def code(request):
 
     if language == 'java':
         os.remove(file_path+file_name)
-        os.remove(file_path+file_name.replace('.java','.class'))
+        if(not error):
+            os.remove(file_path+file_name.replace('.java','.class'))
     else:
         os.remove(file_path+file_name)
     return JsonResponse({"output":output,"error":error})
